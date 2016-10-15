@@ -11,10 +11,12 @@ def newFile():
 
 def saveFile():
     global filename
-    content = text.get(0.0, END)  # Get all the content from the file
-    f = open(filename, "w")  # Open the file in write mode
-    f.write(content)  # write the content into the file
-    f.close()  #close the file
+    filename = tkinter.filedialog.asksaveasfile(mode="w", defaultextension=".txt")
+    if filename != None:
+        content = text.get(0.0, END)  # Get all the content from the file
+          # Open the file in write mode
+        filemenu.write(content)  # write the content into the file
+        filename.close()  #close the file
 
 def openFile():
     f = tkinter.filedialog.askopenfile(mode="r")
@@ -26,7 +28,9 @@ root = Tk()
 root.title("Text Editor")
 root.minsize(width=500, height=500)
 root.maxsize(width=500, height=500)
+root.configure(background='black')
 text = Text(root, width=300, height=300)
+text.configure(background='#333', foreground='#fff')
 text.pack()
 
 menubar = Menu(root)
